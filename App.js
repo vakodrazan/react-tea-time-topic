@@ -1,7 +1,10 @@
 import React from 'react';
+import TopicList from './components/TopicList';
 
 export default function App() {
     return (
-        <h1>Hello World</h1>
+        <div>
+            <TopicList />
+        </div>
     )
 }
