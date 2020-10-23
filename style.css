@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    background-color: #E5E5E5;
+}
+
+header {
+    background-color: blue;
+    color: white;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+h1 {
+    margin: 0;
+}
+
+section {
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.container {
+    padding: 1rem;
+}
+
+@media (min-width: 650px) {
+    .container {
+        margin: auto;
+        max-width: 650px;
+    }
+}
+
+.btn-left {
+    float: right;
+}
+
+.votes {
+    display: flex;
+	gap: 15px;
+	align-items: center;
+	color: #d8779a;
+}
+
+.upvotes,
+.downvotes {
+    margin-right: 5px;
+}

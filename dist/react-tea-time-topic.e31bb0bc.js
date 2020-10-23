@@ -29772,7 +29772,104 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"App.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"components/DiscussedTopics.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = DiscussedTopics;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function DiscussedTopics({
+  topic
+}) {
+  const discussedOnDate = new Date(Number(topic.discussedOn));
+  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("button", {
+    className: "btn-left"
+  }, "Delete"), /*#__PURE__*/_react.default.createElement("p", null, topic.title), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "Discussed on ", discussedOnDate.toLocaleDateString())));
+}
+},{"react":"node_modules/react/index.js"}],"components/UndiscussedTopics.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = UndiscussedTopics;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function UndiscussedTopics({
+  topic
+}) {
+  return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("button", {
+    className: "btn-left"
+  }, "Archive"), /*#__PURE__*/_react.default.createElement("p", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
+    className: "votes"
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    className: "upvotes"
+  }, "Upvotes"), /*#__PURE__*/_react.default.createElement("span", null, topic.upvotes)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    className: "downvotes"
+  }, "Downvotes"), /*#__PURE__*/_react.default.createElement("span", null, topic.downvotes))));
+}
+},{"react":"node_modules/react/index.js"}],"components/TopicList.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = TopicList;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _DiscussedTopics = _interopRequireDefault(require("./DiscussedTopics"));
+
+var _UndiscussedTopics = _interopRequireDefault(require("./UndiscussedTopics"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const endPoint = "https://gist.githubusercontent.com/Pinois/93afbc4a061352a0c70331ca4a16bb99/raw/6da767327041de13693181c2cb09459b0a3657a1/topics.json";
+
+function TopicList() {
+  const [topics, setTopics] = (0, _react.useState)([]);
+
+  const fetchTopicsData = async () => {
+    try {
+      const res = await fetch(endPoint);
+      const data = await res.json();
+      setTopics(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  (0, _react.useEffect)(() => {
+    fetchTopicsData();
+  }, []); // Undiscussed topic
+
+  const undiscussedTopics = topics.filter(topic => !topic.discussedOn);
+  const undiscussedTopicList = undiscussedTopics.map(topic => /*#__PURE__*/_react.default.createElement(_UndiscussedTopics.default, {
+    key: topic.id,
+    topic: topic
+  })); // Discussed topic
+
+  const discussedTopic = topics.filter(topic => topic.discussedOn);
+  const discussedTopicList = discussedTopic.map(topic => /*#__PURE__*/_react.default.createElement(_DiscussedTopics.default, {
+    key: topic.id,
+    topic: topic
+  }));
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Next topics"), !topics.discussedOn && undiscussedTopicList), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Past Topics"), !topics.discussedOn && discussedTopicList));
+}
+},{"react":"node_modules/react/index.js","./DiscussedTopics":"components/DiscussedTopics.js","./UndiscussedTopics":"components/UndiscussedTopics.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29782,12 +29879,14 @@ exports.default = App;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _TopicList = _interopRequireDefault(require("./components/TopicList"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
-  return /*#__PURE__*/_react.default.createElement("h1", null, "Hello World");
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_TopicList.default, null));
 }
-},{"react":"node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./components/TopicList":"components/TopicList.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
