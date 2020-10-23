@@ -4,13 +4,17 @@ import React from 'react';
 export default function UndiscussedTopics({topic}) {
     return (
         <section>
-            <button>Archive</button>
+            <button className="btn-left">Archive</button>
             <p>{topic.title}</p>
-            <div>
-                <button>Upvotes</button>
-                <span>{topic.upvotes}</span>
-                <button>Downvotes</button>
-                <span>{topic.downvotes}</span>
+            <div className="votes">
+                <div>
+                    <button className="upvotes">Upvotes</button>
+                    <span>{topic.upvotes}</span>
+                </div>
+                <div>
+                    <button className="downvotes">Downvotes</button>
+                    <span>{topic.downvotes}</span>
+                </div>
             </div>
         </section>
     )
