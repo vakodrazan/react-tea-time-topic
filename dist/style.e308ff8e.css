@@ -17,6 +17,10 @@ h1 {
     margin: 0;
 }
 
+article {
+    padding-top: 2rem;
+}
+
 section {
     background-color: white;
     padding: 1rem;
