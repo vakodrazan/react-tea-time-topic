@@ -57,3 +57,17 @@ API link : https://gist.githubusercontent.com/Pinois/93afbc4a061352a0c70331ca4a1
 Fork this repo and clone your fork!
 
 Good luck!
+
+
+## Report
+
+In this project, we need to refactor the tea time topic project by using react.
+
+### What I did
+
+ - I fetch the data from an api then add the element in the DOM.
+ - I create a components to each individual function.
+ - I spread the element when adding a new one, or archiving it with the discussed topic.
+
+
+ [Solution](https://react-tea-time-topic.netlify.app/)
