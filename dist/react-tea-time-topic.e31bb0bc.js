@@ -29910,7 +29910,7 @@ function TopicList({
   function handleArchive(id) {
     const topicToArchive = topics.find(topic => topic.id === id);
     topicToArchive.discussedOn = Date.now();
-    setTopics(topicToArchive);
+    setTopics([...topics]);
   } // Undiscussed topic
 
 
