@@ -29772,7 +29772,9 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"components/DiscussedTopics.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"assets/trash.svg":[function(require,module,exports) {
+module.exports = "/trash.46c8aa90.svg";
+},{}],"components/DiscussedTopics.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29782,6 +29784,8 @@ exports.default = DiscussedTopics;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _trash = _interopRequireDefault(require("../assets/trash.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function DiscussedTopics({
@@ -29790,9 +29794,18 @@ function DiscussedTopics({
   const discussedOnDate = new Date(Number(topic.discussedOn));
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("button", {
     className: "btn-left"
-  }, "Delete"), /*#__PURE__*/_react.default.createElement("p", null, topic.title), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "Discussed on ", discussedOnDate.toLocaleDateString())));
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _trash.default,
+    alt: "Delete Icon"
+  })), /*#__PURE__*/_react.default.createElement("p", null, topic.title), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "Discussed on ", discussedOnDate.toLocaleDateString())));
 }
-},{"react":"node_modules/react/index.js"}],"components/UndiscussedTopics.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../assets/trash.svg":"assets/trash.svg"}],"assets/archive.svg":[function(require,module,exports) {
+module.exports = "/archive.656a9879.svg";
+},{}],"assets/upvote.svg":[function(require,module,exports) {
+module.exports = "/upvote.574501f2.svg";
+},{}],"assets/downvote.svg":[function(require,module,exports) {
+module.exports = "/downvote.e2679fc5.svg";
+},{}],"components/UndiscussedTopics.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29802,6 +29815,12 @@ exports.default = UndiscussedTopics;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _archive = _interopRequireDefault(require("../assets/archive.svg"));
+
+var _upvote = _interopRequireDefault(require("../assets/upvote.svg"));
+
+var _downvote = _interopRequireDefault(require("../assets/downvote.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function UndiscussedTopics({
@@ -29809,15 +29828,24 @@ function UndiscussedTopics({
 }) {
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("button", {
     className: "btn-left"
-  }, "Archive"), /*#__PURE__*/_react.default.createElement("p", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _archive.default,
+    alt: "Archive Icon"
+  })), /*#__PURE__*/_react.default.createElement("p", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
     className: "votes"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     className: "upvotes"
-  }, "Upvotes"), /*#__PURE__*/_react.default.createElement("span", null, topic.upvotes)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _upvote.default,
+    alt: "upvote Icon"
+  })), /*#__PURE__*/_react.default.createElement("span", null, topic.upvotes)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     className: "downvotes"
-  }, "Downvotes"), /*#__PURE__*/_react.default.createElement("span", null, topic.downvotes))));
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _downvote.default,
+    alt: "downvote Icon"
+  })), /*#__PURE__*/_react.default.createElement("span", null, topic.downvotes))));
 }
-},{"react":"node_modules/react/index.js"}],"components/TopicList.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../assets/archive.svg":"assets/archive.svg","../assets/upvote.svg":"assets/upvote.svg","../assets/downvote.svg":"assets/downvote.svg"}],"components/TopicList.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29926,7 +29954,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60920" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64871" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

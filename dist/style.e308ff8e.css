@@ -47,5 +47,9 @@ section {
 .downvotes {
     margin-right: 5px;
 }
+img {
+    width: 20px;
+    height: 20px;
+}
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */
