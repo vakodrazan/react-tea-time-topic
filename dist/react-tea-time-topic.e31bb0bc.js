@@ -29884,9 +29884,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 const endPoint = "https://gist.githubusercontent.com/Pinois/93afbc4a061352a0c70331ca4a16bb99/raw/6da767327041de13693181c2cb09459b0a3657a1/topics.json";
 
-function TopicList() {
-  const [topics, setTopics] = (0, _react.useState)([]);
-
+function TopicList({
+  topics,
+  setTopics
+}) {
   const fetchTopicsData = async () => {
     try {
       const res = await fetch(endPoint);
@@ -29928,7 +29929,54 @@ function TopicList() {
   }));
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Next topics"), !topics.discussedOn && undiscussedTopicList), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Past Topics"), !topics.discussedOn && discussedTopicList));
 }
-},{"react":"node_modules/react/index.js","./DiscussedTopics":"components/DiscussedTopics.js","./UndiscussedTopics":"components/UndiscussedTopics.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./DiscussedTopics":"components/DiscussedTopics.js","./UndiscussedTopics":"components/UndiscussedTopics.js"}],"components/AddList.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = AddList;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _TopicList = _interopRequireDefault(require("./TopicList"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function AddList({
+  topics,
+  setTopics
+}) {
+  let [addTopic, setAddTopic] = (0, _react.useState)('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    addTopic = {
+      upvotes: 0,
+      downvotes: 0,
+      disussedOn: '',
+      title: addTopic,
+      id: Date.now()
+    };
+    topics.push(addTopic);
+    setTopics([...topics]);
+  }
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "Add Topic"), /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement("fieldset", null, /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "addlist",
+    placeholder: "Write your topic idea here...",
+    value: addTopic,
+    onChange: e => setAddTopic(e.target.value)
+  }), /*#__PURE__*/_react.default.createElement("button", null, "Submit"))));
+}
+},{"react":"node_modules/react/index.js","./TopicList":"components/TopicList.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29936,16 +29984,29 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = App;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
+
+var _AddList = _interopRequireDefault(require("./components/AddList"));
 
 var _TopicList = _interopRequireDefault(require("./components/TopicList"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 function App() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_TopicList.default, null));
+  const [topics, setTopics] = (0, _react.useState)([]);
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_AddList.default, {
+    topics: topics,
+    setTopics: setTopics
+  }), /*#__PURE__*/_react.default.createElement(_TopicList.default, {
+    topics: topics,
+    setTopics: setTopics
+  }));
 }
-},{"react":"node_modules/react/index.js","./components/TopicList":"components/TopicList.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./components/AddList":"components/AddList.js","./components/TopicList":"components/TopicList.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
