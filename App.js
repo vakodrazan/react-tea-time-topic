@@ -4,6 +4,7 @@ import TopicList from './components/TopicList';
 
 export default function App() {
     const [topics, setTopics] = useState([]);
+
     return (
         <div>
             <AddList topics={topics} setTopics={setTopics}  />
