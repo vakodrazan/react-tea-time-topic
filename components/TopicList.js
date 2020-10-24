@@ -27,6 +27,7 @@ export default function TopicList({ topics, setTopics }) {
         setTopics(deletedTopic);
     }
 
+    // Archive an item
     function handleArchive(id) {
         const topicToArchive = topics.find(topic => topic.id === id);
         topicToArchive.discussedOn = Date.now();
@@ -40,7 +41,6 @@ export default function TopicList({ topics, setTopics }) {
 		const ratioB = topicB.upvotes - topicB.downvotes;
 		return ratioB - ratioA;
     });
-
     const undiscussedTopicList = undiscussedTopics.map(topic => <UndiscussedTopics key={topic.id} handleArchive={handleArchive} topic={topic} />)
 
     // Discussed topic

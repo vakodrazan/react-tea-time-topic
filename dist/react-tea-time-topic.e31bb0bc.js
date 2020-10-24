@@ -29907,7 +29907,8 @@ function TopicList({
   function handleRemove(id) {
     const deletedTopic = topics.filter(topic => topic.id !== id);
     setTopics(deletedTopic);
-  }
+  } // Archive an item
+
 
   function handleArchive(id) {
     const topicToArchive = topics.find(topic => topic.id === id);
