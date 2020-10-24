@@ -34,7 +34,13 @@ export default function TopicList({ topics, setTopics }) {
     }
 
     // Undiscussed topic
-    const undiscussedTopics = topics.filter(topic => !topic.discussedOn);
+    let undiscussedTopics = topics.filter(topic => !topic.discussedOn);
+    undiscussedTopics = undiscussedTopics.sort((topicA, topicB) => {
+		const ratioA = topicA.upvotes - topicA.downvotes;
+		const ratioB = topicB.upvotes - topicB.downvotes;
+		return ratioB - ratioA;
+    });
+
     const undiscussedTopicList = undiscussedTopics.map(topic => <UndiscussedTopics key={topic.id} handleArchive={handleArchive} topic={topic} />)
 
     // Discussed topic

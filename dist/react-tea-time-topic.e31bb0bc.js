@@ -29916,7 +29916,12 @@ function TopicList({
   } // Undiscussed topic
 
 
-  const undiscussedTopics = topics.filter(topic => !topic.discussedOn);
+  let undiscussedTopics = topics.filter(topic => !topic.discussedOn);
+  undiscussedTopics = undiscussedTopics.sort((topicA, topicB) => {
+    const ratioA = topicA.upvotes - topicA.downvotes;
+    const ratioB = topicB.upvotes - topicB.downvotes;
+    return ratioB - ratioA;
+  });
   const undiscussedTopicList = undiscussedTopics.map(topic => /*#__PURE__*/_react.default.createElement(_UndiscussedTopics.default, {
     key: topic.id,
     handleArchive: handleArchive,
