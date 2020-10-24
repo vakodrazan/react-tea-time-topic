@@ -29813,7 +29813,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = UndiscussedTopics;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _archive = _interopRequireDefault(require("../assets/archive.svg"));
 
@@ -29823,9 +29823,15 @@ var _downvote = _interopRequireDefault(require("../assets/downvote.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 function UndiscussedTopics({
   topic
 }) {
+  const [upvote, setUpvote] = (0, _react.useState)(topic.upvotes);
+  const [downvote, setDownvote] = (0, _react.useState)(topic.downvotes);
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("button", {
     className: "btn-left"
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -29834,16 +29840,18 @@ function UndiscussedTopics({
   })), /*#__PURE__*/_react.default.createElement("p", null, topic.title), /*#__PURE__*/_react.default.createElement("div", {
     className: "votes"
   }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
-    className: "upvotes"
+    className: "upvotes",
+    onClick: () => setUpvote(upvote + 1)
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _upvote.default,
     alt: "upvote Icon"
-  })), /*#__PURE__*/_react.default.createElement("span", null, topic.upvotes)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
-    className: "downvotes"
+  })), /*#__PURE__*/_react.default.createElement("span", null, upvote)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    className: "downvotes",
+    onClick: () => setDownvote(downvote + 1)
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _downvote.default,
     alt: "downvote Icon"
-  })), /*#__PURE__*/_react.default.createElement("span", null, topic.downvotes))));
+  })), /*#__PURE__*/_react.default.createElement("span", null, downvote))));
 }
 },{"react":"node_modules/react/index.js","../assets/archive.svg":"assets/archive.svg","../assets/upvote.svg":"assets/upvote.svg","../assets/downvote.svg":"assets/downvote.svg"}],"components/TopicList.js":[function(require,module,exports) {
 "use strict";
