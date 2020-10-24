@@ -63,11 +63,20 @@ Good luck!
 
 In this project, we need to refactor the tea time topic project by using react.
 
-### What I did
+### What I have done
 
  - I fetch the data from an api then add the element in the DOM.
  - I create a components to each individual function.
  - I spread the element when adding a new one, or archiving it with the discussed topic.
+ - You can add a new topic by writing it in the input then submit it. It will appear in the next topic.
+ - It only sort once but when you make a change in the vote it didn't seem to work anymore.
+ - You can upvote and downvote the list.
+ - When you click in the archove button, it should archive and show in the discussed topic.
+ - Once the element is in the past topic list, you can delete it.
+ - Since we do not need to do the local storage, the change will not saved in the local storage when the page refreshed.
+ - I can say that it is responsive.
 
+### Link to my document:
 
  [Solution](https://react-tea-time-topic.netlify.app/)
+ [Demo](https://github.com/vakodrazan/react-tea-time-topic/)
