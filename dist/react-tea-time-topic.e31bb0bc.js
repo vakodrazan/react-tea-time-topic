@@ -29804,7 +29804,9 @@ function DiscussedTopics({
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _trash.default,
     alt: "Delete Icon"
-  })), /*#__PURE__*/_react.default.createElement("p", null, topic.title), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "Discussed on ", discussedOnDate.toLocaleDateString())));
+  })), /*#__PURE__*/_react.default.createElement("p", null, topic.title), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", {
+    className: "discussed"
+  }, "Discussed on ", discussedOnDate.toLocaleDateString())));
 }
 },{"react":"node_modules/react/index.js","../assets/trash.svg":"assets/trash.svg"}],"assets/archive.svg":[function(require,module,exports) {
 module.exports = "/archive.656a9879.svg";

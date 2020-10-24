@@ -16,7 +16,7 @@ export default function DiscussedTopics({topic, handleRemove}) {
             </button>
             <p>{topic.title}</p>
             <div>
-            <p>Discussed on {discussedOnDate.toLocaleDateString()}</p>
+            <p className="discussed">Discussed on {discussedOnDate.toLocaleDateString()}</p>
             </div>
         </section>
     )

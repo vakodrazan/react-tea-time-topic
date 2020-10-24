@@ -19,6 +19,7 @@ section {
     padding: 1rem;
     margin-bottom: 1rem;
     border-radius: 5px;
+    text-align: center;
 }
 
 .container {
@@ -32,22 +33,41 @@ section {
     }
 }
 
+button {
+    cursor: pointer;
+}
+
 .btn-left {
     float: right;
+    background-color: white;
+    border: none;
+    color: blue;
 }
 
 .votes {
     display: flex;
 	gap: 15px;
-	align-items: center;
-	color: #d8779a;
+	justify-content: center;
+    color: #d8779a;
 }
 
 .upvotes,
 .downvotes {
     margin-right: 5px;
+    background-color: #FAAE2C;
+    border-radius: 50%;
+    padding-top: 7px;
 }
+
+button:hover {
+    -webkit-box-shadow: 0px 10px 13px -7px #021b26, 5px 5px 15px 5px rgba(0,0,0,0); 
+	box-shadow: 0px 10px 13px -7px #020826, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
 img {
     width: 20px;
     height: 20px;
+}
+.discussed {
+    color: #FAAE2C;
 }
