@@ -29782,18 +29782,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = DiscussedTopics;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _trash = _interopRequireDefault(require("../assets/trash.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 function DiscussedTopics({
-  topic
+  topic,
+  handleRemove
 }) {
-  const discussedOnDate = new Date(Number(topic.discussedOn));
+  const discussedOnDate = new Date(Number(topic.discussedOn)); // const [topicList, setTopicList] = useState(topic);
+
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("button", {
-    className: "btn-left"
+    className: "btn-left",
+    onClick: () => handleRemove(topic.id)
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _trash.default,
     alt: "Delete Icon"
@@ -29828,12 +29835,14 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function UndiscussedTopics({
-  topic
+  topic,
+  handleArchive
 }) {
   const [upvote, setUpvote] = (0, _react.useState)(topic.upvotes);
   const [downvote, setDownvote] = (0, _react.useState)(topic.downvotes);
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("button", {
-    className: "btn-left"
+    className: "btn-left",
+    onClick: () => handleArchive(topic.id)
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _archive.default,
     alt: "Archive Icon"
@@ -29890,17 +29899,31 @@ function TopicList() {
 
   (0, _react.useEffect)(() => {
     fetchTopicsData();
-  }, []); // Undiscussed topic
+  }, []); // Remove item from the list
+
+  function handleRemove(id) {
+    const deletedTopic = topics.filter(topic => topic.id !== id);
+    setTopics(deletedTopic);
+  }
+
+  function handleArchive(id) {
+    const topicToArchive = topics.find(topic => topic.id === id);
+    topicToArchive.discussedOn = Date.now();
+    setTopics(topicToArchive);
+  } // Undiscussed topic
+
 
   const undiscussedTopics = topics.filter(topic => !topic.discussedOn);
   const undiscussedTopicList = undiscussedTopics.map(topic => /*#__PURE__*/_react.default.createElement(_UndiscussedTopics.default, {
     key: topic.id,
+    handleArchive: handleArchive,
     topic: topic
   })); // Discussed topic
 
   const discussedTopic = topics.filter(topic => topic.discussedOn);
   const discussedTopicList = discussedTopic.map(topic => /*#__PURE__*/_react.default.createElement(_DiscussedTopics.default, {
     key: topic.id,
+    handleRemove: handleRemove,
     topic: topic
   }));
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Next topics"), !topics.discussedOn && undiscussedTopicList), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Past Topics"), !topics.discussedOn && discussedTopicList));

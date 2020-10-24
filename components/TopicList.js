@@ -21,13 +21,27 @@ export default function TopicList() {
         fetchTopicsData();
     }, []);
 
+    // Remove item from the list
+    function handleRemove(id) {
+        const deletedTopic = topics.filter(topic => topic.id !== id);
+        setTopics(deletedTopic);
+    }
+
+    function handleArchive(id) {
+        const topicToArchive = topics.find(topic => topic.id === id);
+        topicToArchive.discussedOn = Date.now();
+        setTopics(topicToArchive);
+    }
+
     // Undiscussed topic
     const undiscussedTopics = topics.filter(topic => !topic.discussedOn);
-    const undiscussedTopicList = undiscussedTopics.map(topic => <UndiscussedTopics  key={topic.id} topic={topic} />)
+    const undiscussedTopicList = undiscussedTopics.map(topic => <UndiscussedTopics key={topic.id} handleArchive={handleArchive} topic={topic} />)
 
     // Discussed topic
     const discussedTopic = topics.filter(topic => topic.discussedOn);
-    const discussedTopicList = discussedTopic.map(topic => <DiscussedTopics  key={topic.id} topic={topic} />)
+    const discussedTopicList = discussedTopic.map(topic => <DiscussedTopics key={topic.id} handleRemove={handleRemove} topic={topic} />)
+
+
 
     return (
         <>
