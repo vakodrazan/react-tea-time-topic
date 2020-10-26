@@ -29935,7 +29935,7 @@ function TopicList({
     handleRemove: handleRemove,
     topic: topic
   }));
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Next topics"), !topics.discussedOn && undiscussedTopicList), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Past Topics"), !topics.discussedOn && discussedTopicList));
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, topics.length === 0 && /*#__PURE__*/_react.default.createElement("h2", null, "Loading..."), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Next topics"), !topics.discussedOn && undiscussedTopicList), /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement("h2", null, "Past Topics"), !topics.discussedOn && discussedTopicList));
 }
 },{"react":"node_modules/react/index.js","./DiscussedTopics":"components/DiscussedTopics.js","./UndiscussedTopics":"components/UndiscussedTopics.js"}],"components/AddList.js":[function(require,module,exports) {
 "use strict";
@@ -30054,7 +30054,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60228" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49349" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

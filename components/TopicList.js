@@ -51,6 +51,7 @@ export default function TopicList({ topics, setTopics }) {
 
     return (
         <>
+            {topics.length === 0 && <h2>Loading...</h2>}
             <article>
                 <h2>Next topics</h2>
                 {!topics.discussedOn && undiscussedTopicList}
