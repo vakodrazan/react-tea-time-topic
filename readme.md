@@ -63,7 +63,7 @@ Good luck!
 
 In this project, we need to refactor the tea time topic project by using react.
 
-### What I have done
+### What I have done      
 
  - I fetch the data from an api then add the element in the DOM.
  - I create a components to each individual function.

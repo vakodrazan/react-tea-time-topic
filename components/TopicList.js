@@ -7,6 +7,7 @@ const endPoint = "https://gist.githubusercontent.com/Pinois/93afbc4a061352a0c703
 
 export default function TopicList({ topics, setTopics }) {
 
+    // Fetching the data from api
     const fetchTopicsData = async () => {
         try {
             const res = await fetch(endPoint);

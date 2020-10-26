@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import TopicList from './TopicList';
 
 
 export default function AddList({topics, setTopics}) {

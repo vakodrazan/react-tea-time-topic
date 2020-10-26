@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import trashIcon from '../assets/trash.svg';
 
 export default function DiscussedTopics({topic, handleRemove}) {
 
     const discussedOnDate = new Date(Number(topic.discussedOn));
-    // const [topicList, setTopicList] = useState(topic);
 
     return (
         <section>
@@ -16,7 +15,7 @@ export default function DiscussedTopics({topic, handleRemove}) {
             </button>
             <p>{topic.title}</p>
             <div>
-            <p className="discussed">Discussed on {discussedOnDate.toLocaleDateString()}</p>
+                <p className="discussed">Discussed on {discussedOnDate.toLocaleDateString()}</p>
             </div>
         </section>
     )
