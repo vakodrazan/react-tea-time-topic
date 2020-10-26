@@ -15,7 +15,8 @@ export default function AddList({topics, setTopics}) {
             id: Date.now(),
         }
         topics.push(addTopic);
-        setTopics([...topics])
+        setTopics([...topics]);
+        setAddTopic('');
     }
     return (
         <>

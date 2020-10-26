@@ -29972,6 +29972,7 @@ function AddList({
     };
     topics.push(addTopic);
     setTopics([...topics]);
+    setAddTopic('');
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "Add Topic"), /*#__PURE__*/_react.default.createElement("form", {
