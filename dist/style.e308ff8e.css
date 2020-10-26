@@ -96,6 +96,7 @@ form {
 
 fieldset {
     display: flex;
+    flex-direction: column;
     border: none;
 }
 
@@ -114,20 +115,29 @@ input {
 
 form button {
     font-size: 1rem;
-    padding: 11px 1rem;
+    padding: 5px;
     background-color: #FAAE2C;
     border: none;
+    max-width: 5rem;
     border-radius: 5px;
 }
 
 @media (min-width: 650px) {
     fieldset {
         display: flex;
+        flex-direction: row;
         justify-content: space-around;
     }
 
     input {
         margin-bottom: 0;
+    }
+    form button {
+        font-size: 1rem;
+        padding: 11px 1rem;
+        background-color: #FAAE2C;
+        border: none;
+        border-radius: 5px;
     }
 }
 
