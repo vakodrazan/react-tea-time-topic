@@ -6,6 +6,8 @@ export default function AddList({topics, setTopics}) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        if (!addTopic) return;
+
         addTopic = {
             upvotes: 0,
             downvotes: 0,
@@ -13,8 +15,8 @@ export default function AddList({topics, setTopics}) {
             title: addTopic,
             id: Date.now(),
         }
-        topics.push(addTopic);
-        setTopics([...topics]);
+        const newTopicList = [...topics, addTopic];
+        setTopics(newTopicList);
         setAddTopic('');
     }
     return (

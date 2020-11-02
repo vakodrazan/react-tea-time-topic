@@ -29794,6 +29794,7 @@ function AddList({
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!addTopic) return;
     addTopic = {
       upvotes: 0,
       downvotes: 0,
@@ -29801,8 +29802,8 @@ function AddList({
       title: addTopic,
       id: Date.now()
     };
-    topics.push(addTopic);
-    setTopics([...topics]);
+    const newTopicList = [...topics, addTopic];
+    setTopics(newTopicList);
     setAddTopic('');
   }
 
@@ -30047,7 +30048,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50808" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52249" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
